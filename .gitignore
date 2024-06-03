@@ -1,0 +1,17 @@
+# Ignore node_modules folder in frontend
+/client/node_modules
+
+# Ignore build folders
+/client/build
+/server/target
+
+# Ignore environment files
+/client/.env
+/server/.env
+
+# Ignore OS and IDE specific files
+.DS_Store
+*.log
+*.swp
+.vscode/
+.idea/

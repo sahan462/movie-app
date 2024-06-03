@@ -1,4 +1,4 @@
-# My Full-Stack Web Application
+# Full-Stack Web Application
 
 This repository contains a full-stack web application built with Spring Boot for the backend and React with Tailwind CSS for the frontend.
 

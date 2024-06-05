@@ -1,19 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import api from './api/axiosConfig.js'
+import {useState, useEffect} from "react";
+import {Route, Routes} from "react-router-dom";
+
+import Layout from './components/layout.jsx'
+import Home from './components/home/home.jsx'
 
 function App() {
-  const [count, setCount] = useState(0)
+    const [count, setCount] = useState(0)
+    const[movies, setMovies] = useState([]);
+
+    const getMovies = async () => {
+
+        try{
+            const response = await api.get("api/v1/movies")
+            setMovies(response.data)
+        }catch (err){
+            console.log(err)
+        }
+
+    }
+
+    useEffect(()=>{
+        getMovies();
+    }, [])
 
     return (
-        <div className="text-center">
-            <header className="bg-blue-500 text-white p-4">
-                <h1 className="text-3xl">Welcome to My React App</h1>
-            </header>
-            <main className="p-4">
-                <p className="text-lg">This is a sample React application using Tailwind CSS.</p>
-            </main>
+        <div className="App p-4">
+            <Routes>
+                <Route path="/" element={<Layout />}>
+                    <Route path="/" element={<Home movies = {movies}/>}></Route>
+                </Route>
+            </Routes>
         </div>
     );
 }
